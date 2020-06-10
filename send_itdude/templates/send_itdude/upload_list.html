@@ -1,0 +1,60 @@
+ {% extends 'send_itdude/base.html' %}
+{% block content %}
+
+  {% block content_header %}
+    <h2 class="upload">Uploaded files</h2>
+    <a href="{% url 'send' %}" >
+      <button class="favorite styled" type="button">
+      Upload other files
+      </button>
+    </a>
+    <a href="{% url 'password_change' %}" >
+    <button class="favorite styled" type="button">
+      Change Your password
+    </button>
+    </a>
+  {% endblock %}
+
+  <table class="table mb-0">
+    <thead>
+      <tr>
+        
+        <th>File name</th>
+        <th>Date of publish</th>
+        <th>Number of dowloads</th>
+        <th>Link</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for file in allfiles %}
+        {%if file.uploaded_by == user %}
+        
+
+          <tr>
+            
+            <td>{{ file.uploadedfile.name }}</td>
+            <td>{{ file.date_of_publish }}</td>
+            
+            
+            <td>
+            
+              <a href="{{ file.uploadedfile.url }}" {{ uploaded_files.increment }}class="btn btn-primary btn-sm" target="_blank">
+                Download File
+              </a>
+            
+            </td>
+            <td>{{ file.uploadedfile.url}}</td>
+            <td>
+              <form method="post" action="{% url 'delete_file' file.pk %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+              </form>
+            </td>
+            
+          </tr>
+        {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

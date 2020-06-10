@@ -1,0 +1,10 @@
+{% extends 'send_itdude/base.html' %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'send_itdude/css/style.css' %}">
+{% block content %}
+<h1> File was went succesfully!</h2>
+<h2> Here is your share link</h2>
+<a href="{%url 'uploaded_files_list'%}">localhost{{ upload}}</h2>
+<h2>{{ upload.uploadedfile.url}}</h2>
+{% endblock content %}

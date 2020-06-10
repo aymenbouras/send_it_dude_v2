@@ -1,0 +1,38 @@
+{% extends 'send_itdude/base.html' %}
+
+<title>SEND it DUDE</title>
+{% block content %}
+
+{%if user.is_authenticated%}
+    <p><strong> Welcome in <mark>{{user.username}}</mark>!</strong></p>
+    <p>
+    <a href="{% url 'send'  %}">
+    <button class="favorite styled"
+            type="button">
+            
+        Share a file
+        
+    </button></a>
+
+ {% else %} 
+    <p class="index"><strong> Share Files for free! <p clas="index">Link will be generated.</p></strong></p>
+    <p><a href="accounts/login">
+    <button class="favorite styled"
+            type="button">
+            
+        Log In
+        
+    </button></a>
+    <a href="{% url 'signup'  %}">
+    <button class="favorite styled"
+            type="button">
+        Sign Up
+        
+    </button><a/>
+    </p>
+
+    
+
+    </p>
+{%endif%}
+{% endblock content %}

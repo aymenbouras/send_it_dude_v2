@@ -1,0 +1,30 @@
+{% extends 'send_itdude/base.html' %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'send_itdude/css/style.css' %}">
+
+{% block content %}
+<h2> Upload </h2>
+<h3>Please choose the file to upload (Max 20mo)</h3>
+{% if user.is_authenticated %}
+<form method="post" enctype="multipart/form-data">
+{% csrf_token %}
+{{ form.uploadedfile }}
+{{ form.uploaded_by }}
+{{ form.errors.uploadedfile }}
+
+<button type="submit"> Upload file</button>
+
+
+
+</form>
+{% else %}
+<a href="{%url 'login'%}">
+<button class="uploadfirst" type="button"> You need to log in first!</button></a>
+{% endif %}
+{% if url %}
+    <p>Here's your link dude : <a href="{{ url }}">{{ url }}</a></p>
+  {% endif %}
+
+
+{% endblock content %}

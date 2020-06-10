@@ -1,0 +1,57 @@
+ {% extends 'send_itdude/base.html' %}
+{% block content %}
+
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'send_itdude/css/style.css' %}">
+        
+
+        
+<div class="container" id="container">
+	<div class="form-container sign-up-container">
+		<form method="post" action="{% url "signup"%}">
+        {% csrf_token %}
+			<h1>Create Account</h1>
+			
+			
+			{{ form.username }}
+			
+			<button type="submit">Sign Up</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form method="post" action="{% url 'login' %}" >
+        {% csrf_token %}
+			<h1>Let's Sign in !</h1>
+			
+			
+			{{ form.username }}
+			{{ form.password }}
+			<a href="{% url 'password_reset' %}">Forgot your password?</a>
+			<button type="submit" value="login">Sign In</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				
+				<button class="ghost" id="signIn">Sign In</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>Welcome Back!</h1>
+				<p>To keep connected with us please login with your personal info</p>
+                <p> Or : </p>
+				<a href="{%url "signup"%}"> <button class="ghost" id="signUp">Sign Up</button></a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<footer>
+	<p>
+		Created  by
+		<a target="_blank" >Aymen Bouras</a>
+		
+	</p>
+</footer>
+<script type="text/javascript" src="{% static 'send_itdude/js/jsfile.js' %}"></script>
+{% endblock content %}
